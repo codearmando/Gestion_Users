@@ -2,7 +2,7 @@
 
 try {
 
-    include 'conexion.php';
+    include '../conexion.php';
 
     $data = $_POST;
 

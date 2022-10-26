@@ -1,39 +1,7 @@
 <?php
 
 require 'conexion.php';
-
-$sql_user = "SELECT UP.ID_USUARIO  FROM PRESTACIONES.USUARIO_PRESTACIONES UP";
-$consult_user = oci_parse($conexion, $sql_user);
-oci_execute($consult_user);
-// while($row = oci_fetch_assoc($consult_user)){
-//     echo $row['ID_USUARIO'].'<br>';
-// }
-
-$sql_perfil = "SELECT  pp.id_perfil, pp.desc_perfil FROM prestaciones.perfil_prestaciones pp
-group by pp.id_perfil, pp.desc_perfil
-order by pp.id_perfil asc";
-$consult_perfil = oci_parse($conexion, $sql_perfil);
-oci_execute($consult_perfil);
-// while ($row = oci_fetch_assoc($consult_perfil)) {
-//     echo $row['ID_PERFIL'] . '<br>';
-//     echo $row['DESC_PERFIL'] . '<br>';
-// }
-
-$sql_oficina = "SELECT UP.ID_OFICINA_IVSS, OI.NOMBRE_OFICINA FROM PRESTACIONES.USUARIO_PRESTACIONES UP
-INNER JOIN PRESTACIONES.OFICINA_IVSS OI
-ON UP.ID_OFICINA_IVSS = OI.ID_OFICINA_IVSS
-GROUP BY UP.ID_OFICINA_IVSS, OI.NOMBRE_OFICINA
-ORDER BY UP.ID_OFICINA_IVSS ASC";
-
-$consult_oficina = oci_parse($conexion, $sql_oficina);
-oci_execute($consult_oficina);
-// while ($row = oci_fetch_assoc($consult_perfil)) {
-//     echo $row['ID_PERFIL'] . '<br>';
-//     echo $row['DESC_PERFIL'] . '<br>';
-// }
-
-
-
+require 'consult_crear_user_ip.php';
 
 ?>
 
@@ -56,7 +24,7 @@ oci_execute($consult_oficina);
 <body>
 
     <?php
-    include 'nav.php';
+    include 'layout/nav.php';
     ?>
 
 
@@ -107,7 +75,7 @@ oci_execute($consult_oficina);
                             <div class="col-4" style="margin-top: -75px; margin-left: 66%;">
                                 <label for="inputPassword6" class="col-form-label">Nombre y Apellido</label>
 
-                                <input type="text" name="nombres" id="nombre_ag" class="form-control" aria-describedby="passwordHelpInline">
+                                <input type="text" name="nombres" id="nombre_ag" class="form-control" aria-describedby="passwordHelpInline" readonly="readonly" >
                             </div>
 
                             <div class="col-4">
@@ -144,7 +112,6 @@ oci_execute($consult_oficina);
                                 <label for="inputPassword6" class="col-form-label">Permiso</label>
                                 <select class="form-select" id="permiso" aria-label="Default select example" name="permiso">
                                     <option selected disabled>Seleccionar Permiso</option>
-                                    <option value="1">DIRECTOR GENERAL</option>
                                     <option value="2">DIRECTOR DE LINEA</option>
                                     <option value="3">JEFE DE DIVISIÓN</option>
                                     <option value="4">CONSULTOR</option>
@@ -190,7 +157,7 @@ oci_execute($consult_oficina);
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="agregar">
-        Adminnistrar Dirección IP
+        Administrar Dirección IP
     </button>
 
     <!-- Modal -->
@@ -202,7 +169,7 @@ oci_execute($consult_oficina);
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="registro_ip.php" method="POST" id='form_registro_ip'>
+                    <form action="sql/registro_ip.php" method="POST" id='form_registro_ip'>
                         <div class="row">
 
                             <div class="col-4">
@@ -401,54 +368,81 @@ oci_execute($consult_oficina);
         // })                                 
 
 
-        $("#frmRegistro").submit(function(e){
+        $("#frmRegistro").submit(function(e) {
 
             e.preventDefault();
 
-            let datos=$(this).serializeArray();
+            let datos = $(this).serializeArray();
 
             $.ajax({
-                url:'registro.php',
-                type:'POST',
+                url: 'sql/registro.php',
+                type: 'POST',
                 data: datos,
                 dataType: 'json',
 
-                success: function(response){
-                    alert('Agregado con Exito');
-                    window.location = 'index.php';
+                success: function(response) {
+
+
+                    Swal.fire({
+                        title: "Agregado con Éxito",
+                        icon: "success",
+                        confirmButtonText: "Aceptar",
+                        position: "center",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then(function() {
+                        window.location = "index.php";
+                    });
+
+                    // alert('Agregado con Exito');
+                    // window.location = 'index.php';
                 },
-                fail: function(response){
-                    alert('Error, Intente de Nuevo');
-                    window.location = 'index.php';
+                fail: function(response) {
+                    Swal.fire({
+                        title: "Error, Intente de Nuevo",
+                        icon: "success",
+                        confirmButtonText: "Aceptar",
+                        position: "center",
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        allowEnterKey: false,
+                        stopKeydownPropagation: false,
+                    }).then(function() {
+                        window.location = "index.php";
+                    });
+                    // alert('Error, Intente de Nuevo');
+                    // window.location = 'index.php';
                 }
             })
 
         })
 
         // frmRegistro.addEventListener('submit', (e) => {
-        //     e.preventDefault()
-        //     const data = Object.fromEntries(
-        //         new FormData(e.target)
-        //     )
-        //     console.log(data);
-        //     fetch('registro.php', {
-        //             method: 'POST', // or 'PUT'
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify(data),
-        //         })
-        //         .then((response) => response.json())
-        //         .then((data) => {
-        //             if (!data.ok)
-        //                 return alert(data.msg);
+        // e.preventDefault()
+        // const data = Object.fromEntries(
+        // new FormData(e.target)
+        // )
+        // console.log(data);
+        // fetch('registro.php', {
+        // method: 'POST', // or 'PUT'
+        // headers: {
+        // 'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify(data),
+        // })
+        // .then((response) => response.json())
+        // .then((data) => {
+        // if (!data.ok)
+        // return alert(data.msg);
 
-        //             alert('Usuario registrado con exito');
-        //         })
-        //         .catch((error) => {
-        //             console.log(error);
-        //             alert('Ha ocurrido un error, intente de nuevo mas tarde');
-        //         });
+        // alert('Usuario registrado con exito');
+        // })
+        // .catch((error) => {
+        // console.log(error);
+        // alert('Ha ocurrido un error, intente de nuevo mas tarde');
+        // });
 
         // })
     </script>
@@ -459,8 +453,10 @@ oci_execute($consult_oficina);
 
 
     <?php
-    include 'consulta.php';
+    require 'consult.index.php';
+    require 'layout/footer.php'
     ?>
+
 </body>
 
 </html>

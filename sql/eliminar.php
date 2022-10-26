@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include '../conexion.php';
 
 $data = $_GET;
 

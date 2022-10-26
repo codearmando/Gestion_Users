@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- sweetAlert -->
-    <link rel="stylesheet" href="sweetalert/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="../sweetalert/dist/sweetalert2.min.css">
 </head>
 
 <body>
 
-    <script src="sweetalert/dist/sweetalert2.min.js"></script>
+    <script src="../sweetalert/dist/sweetalert2.min.js"></script>
 
 
     <?php
 
-    include 'conexion.php';
+    include '../conexion.php';
 
     $sql = "UPDATE PRESTACIONES.USUARIO_PRESTACIONES SET ESTATUS = :estatus where ID_USUARIO = :id_usuario";
     $st = oci_parse($conexion, $sql);
@@ -54,7 +54,7 @@
                 allowEnterKey: false,
                 stopKeydownPropagation: false,
             }).then(function() {
-                window.location = "index.php";
+                window.location = "../index.php";
             });
         </script>
 
@@ -78,7 +78,7 @@
                 allowEnterKey: false,
                 stopKeydownPropagation: false,
             }).then(function() {
-                window.location = "index.php";
+                window.location = "../index.php";
             });
         </script>
     <?php

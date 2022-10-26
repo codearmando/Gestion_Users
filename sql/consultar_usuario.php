@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include '../conexion.php';
 
 $usuario =$_GET['usuario'];
 $ip_user =$_GET['ip'];

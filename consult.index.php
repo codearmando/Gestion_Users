@@ -62,11 +62,11 @@
 
                             $sql = "SELECT UP.ID_USUARIO, UP.CEDULA, UP.NOMBRE, P.DESC_PERMISO AS ID_PERMISO, UL.IP_USUARIO, 
                             UP.ESTATUS
-                     from prestaciones.usuario_prestaciones up
-                     inner join prestaciones.usuario_login ul 
-                     on up.id_usuario = ul.id_usuario
-                     INNER JOIN PRESTACIONES.PERMISOS_LOGIN P
-                     ON P.ID_PERMISO=UL.ID_PERMISO";
+                                from prestaciones.usuario_prestaciones up
+                                inner join prestaciones.usuario_login ul 
+                            on up.id_usuario = ul.id_usuario
+                                INNER JOIN PRESTACIONES.PERMISOS_LOGIN P
+                            ON P.ID_PERMISO=UL.ID_PERMISO";
 
                             // $filas = 0;
                             $stmt = oci_parse($conexion, $sql);        // Preparar la sentencia
@@ -147,7 +147,7 @@
                 <div class="modal-body">
 
                     <div class="modal-body">
-                        <form action="update.php" method="POST" id='frmEditar'>
+                        <form action="sql/update.php" method="POST" id='frmEditar'>
                             <div class="row">
 
                                 <div class="col-5">
@@ -161,31 +161,6 @@
 
                                     <input type="text" name="cedula" id="cedula" class="form-control" aria-describedby="passwordHelpInline" autocomplete="off">
                                 </div>
-
-                                <!-- <div class="sub_tit">
-                                    <label><strong>Permisos:</strong></label>
-                                </div> -->
-
-                                <!--<div class="pemisos_modulo">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                        <label class="form-check-label" for="inlineCheckbox1">Dirección General</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                        <label class="form-check-label" for="inlineCheckbox2">Dirección General</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                        <label class="form-check-label" for="inlineCheckbox1">Dirección General</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                        <label class="form-check-label" for="inlineCheckbox2">Dirección General</label>
-                                    </div>
-
-                                </div>-->
-
 
                                 <div class="col-6">
                                     <label for="permiso" class="col-form-label">Permiso</label>
@@ -242,7 +217,7 @@
         const myModal = new bootstrap.Modal('#modificar', {})
 
         function getUser(idUsuario, ipUsuario) {
-            fetch('consultar_usuario.php?usuario=' + idUsuario + '&ip=' + ipUsuario)
+            fetch('sql/consultar_usuario.php?usuario=' + idUsuario + '&ip=' + ipUsuario)
                 .then((response) => response.json())
                 .then((data) => {
 
@@ -273,7 +248,7 @@
         }
     </script>
     <script>
-        $(".deletebtn").on('click',function() {
+        $(".deletebtn").on('click', function() {
             event.preventDefault();
             $tr = $(this).closest('tr');
             let data = $tr.children("td").map(function() {
@@ -297,7 +272,7 @@
                     // ajax
                     $.ajax({
                         type: 'GET',
-                        url: 'eliminar.php',
+                        url: 'sql/eliminar.php',
                         data: {
                             'id_user': nombre,
                             'cargos': cargos,
@@ -306,11 +281,12 @@
                         success: function() {
                             $(this).parents('tr').remove();
                             Swal.fire(
-                                'Eliminado!',
-                                'El registro ha sido eliminado Correctamente.',
-                                'success'
-                            )
-                            window.location = 'index.php';
+                                    'Eliminado!',
+                                    'El registro ha sido eliminado Correctamente.',
+                                    'success'
+                                ).then(function() {
+                                    window.location = "index.php";
+                                });
                         },
                         statusCode: {
                             400: function() {
@@ -326,13 +302,8 @@
                 }
             })
         })
-
     </script>
 
-
-    <?php
-    include 'footer.php';
-    ?>
 
 </body>
 
