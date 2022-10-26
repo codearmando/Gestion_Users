@@ -203,7 +203,7 @@
                                     <input type="hidden" name="ip_v" id="ip_v">
                                     <label for="ip_equipo" class="col-form-label">IP Equipo</label>
 
-                                    <input type="text" name="ip_equipo" id="ip_equipo" class="form-control" aria-describedby="passwordHelpInline" style="color: red;">
+                                    <input type="text" name="ip_equipo" id="ip_equipo" class="form-control" aria-describedby="passwordHelpInline">
                                 </div>
 
                                 <div class="col-4" style="margin-top: 10px;">

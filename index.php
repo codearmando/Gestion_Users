@@ -190,7 +190,7 @@ oci_execute($consult_oficina);
     </div>
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" id="agregar">
-        Agregar Dirección IP
+        Adminnistrar Dirección IP
     </button>
 
     <!-- Modal -->
@@ -213,7 +213,7 @@ oci_execute($consult_oficina);
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-4">
+                            <!-- <div class="col-4">
                                 <label for="inputPassword6" class="col-form-label">Permiso</label>
                                 <select class="form-select" id="permisos" aria-label="Default select example" name="permisos">
                                     <option value="" hidden selected>Seleccione un Permiso</option>
@@ -223,7 +223,7 @@ oci_execute($consult_oficina);
                                     <option value="4">ANALISTA DE MOVIMIENTO</option>
                                         <option value="5">ANALISTA</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="col-4">
                                 <label for="inputPassword6" class="col-form-label">IP Equipo</label>
 
