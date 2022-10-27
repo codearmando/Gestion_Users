@@ -22,7 +22,11 @@
 
 
     <div class="container">
+        <div class="tit">
+            <h3>Gestion de Usuarios Viejos</h3>
+        </div>
         <div class="row">
+
             <div class="col-lg-12" id="col">
                 <div class="table-responsive shadow-sm">
                     <table id="principal" class="table table-striped table-bordered shadow-sm">
@@ -281,12 +285,12 @@
                         success: function() {
                             $(this).parents('tr').remove();
                             Swal.fire(
-                                    'Eliminado!',
-                                    'El registro ha sido eliminado Correctamente.',
-                                    'success'
-                                ).then(function() {
-                                    window.location = "index.php";
-                                });
+                                'Eliminado!',
+                                'El registro ha sido eliminado Correctamente.',
+                                'success'
+                            ).then(function() {
+                                window.location = "index.php";
+                            });
                         },
                         statusCode: {
                             400: function() {

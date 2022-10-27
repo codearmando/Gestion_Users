@@ -1,0 +1,115 @@
+html {
+  min-height: 100%;
+  position: relative;
+}
+/* ---------------------------------- */
+/* -------------botono modal --------------------- */
+/* ---------------------------------- */
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-left: 500px;
+}
+
+.menu > li > a {
+  display: block;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  font-family: arial;
+  margin-top: 10px;
+}
+
+.menu > li:hover {
+  background-color: #f34343;
+  border-radius: 5px;
+}
+
+#nav-bar {
+  padding-top: 4rem;
+}
+
+#logo {
+  width: 60px;
+  margin-right: 300px;
+}
+
+#col {
+  padding: 70px 0px 120px;
+}
+
+#editar {
+  color: green;
+  margin-left: 30px;
+  width: 5px;
+  text-decoration: none;
+}
+
+#eliminar {
+  color: red;
+  margin-left: 30px;
+  width: 5px;
+  text-decoration: none;
+}
+
+#cargos {
+  text-align: center;
+}
+
+table.table-bordered.dataTable thead tr:first-child th,
+table.table-bordered.dataTable thead tr:first-child td {
+  background-color: #811919;
+  color: white;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  width: 75%;
+  border-radius: 10px;
+  padding: 10px;
+  border-color: black;
+}
+
+#membrete {
+  width: 100%;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  color: #d4cdcd;
+  background-image: linear-gradient(90deg, #c40303, #c70000, #570000);
+  display: flex;
+  justify-content: center;
+  font-size: 10px;
+}
+footer .seguro_social {
+  /* display: block; */
+  text-align: center;
+}
+
+#agregar {
+  padding: 10px;
+  margin-left: 15px;
+  margin-top: 25px;
+  background-color: #811919;
+  border-color: #811919;
+}
+
+#tamañ {
+  width: 10px;
+}
+
+.pemisos_modulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 0;
+}
+.sub_tit {
+  padding-top: 20px;
+  border-bottom: 1px solid #ddd;
+}

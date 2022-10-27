@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    width: 100%;
+    box-shadow: 2px 2px 6px rgba(8, 37, 70, 0.212);
+    -o-box-shadow: 2px 2px 6px rgba(8, 37, 70, 0.212);
+    -moz-box-shadow: 2px 2px 6px rgba(8, 37, 70, 0.212);
+    background-image: linear-gradient(90deg, #c40303, #c70000, #570000);
+}
+nav .cont_nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem;
+}
+
+
+/* ------------------ */
+/* -------ENLACES ----------- */
+/* ------------------ */
+nav .cont_nav .enlaces{
+    display: inline-block;
+    font-size: 18px;
+    margin-right:  10px;
+}
+nav .cont_nav .enlaces a{
+    text-decoration: none;
+    color: #fff;
+    margin: 0 10px;
+
+    padding: 10px 15px ;
+    border-radius: 7px;
+}
+nav .cont_nav .enlaces a:hover{
+    background: rgb(228, 58, 58) ;
+    box-shadow: 2px 2px 6px rgba(8, 37, 70, 0.212);
+
+}
